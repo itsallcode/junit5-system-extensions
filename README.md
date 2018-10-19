@@ -40,3 +40,19 @@ Note that in order to be able to trap system exit, the `ExitGuard` temporarily r
 ## Contributing, Feature Requests and Error Reporting
 
 Please check our [contribution guide](.github/CONTRIBUTING.md) to learn how you can help with the project, report errors or request features.
+
+## Development
+
+### Build Time Dependencies
+
+The list below show all build time dependencies in alphabetical order. Note that except the Maven build tool all required modules are downloaded automatically by Maven.
+
+| Dependency                                                                   | Purpose                                                | License                       |
+-------------------------------------------------------------------------------|--------------------------------------------------------|--------------------------------
+| [Apache Maven](https://maven.apache.org/)                                    | Build tool                                             | Apache License 2.0            |
+
+### Essential Build Steps
+
+* `git clone https://github.com/itsallcode/junit5-system-extensions.git`
+* Run `mvn test` to run unit tests.
+* Run `mvn package` to create the JAR file.

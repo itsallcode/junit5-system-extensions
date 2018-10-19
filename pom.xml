@@ -26,4 +26,9 @@
 			</plugin>
 		</plugins>
 	</build>
+	<inceptionYear>2018</inceptionYear>
+	<organization>
+		<name>itsallcode.org</name>
+		<url>https://blog.itsallcode.org</url>
+	</organization>
 </project>

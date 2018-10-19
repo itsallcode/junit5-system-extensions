@@ -1,35 +1,39 @@
 package org.itsallcode.junit.sysextensions;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-
 import org.itsallcode.junit.sysextensions.security.ExitGuardSecurityManager;
-import org.itsallcode.junit.sysextensions.security.ExitSecurityException;
 import org.junit.jupiter.api.extension.AfterAllCallback;
+import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
+import org.junit.jupiter.api.extension.BeforeTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.ExtensionContext.Namespace;
-import org.junit.jupiter.api.extension.ParameterContext;
-import org.junit.jupiter.api.extension.ParameterResolutionException;
-import org.junit.jupiter.api.extension.ParameterResolver;
 import org.junit.jupiter.api.extension.TestInstancePostProcessor;
 
-public final class ExitGuard implements TestInstancePostProcessor, ParameterResolver, AfterAllCallback
+/**
+ * This class implements a set of extension points for JUnit5 tests in order to
+ * enable trapping system exit calls.
+ *
+ * <p>
+ * At the time of the instantiation of a test class which is extended with this
+ * class, {@link ExitGuard} installs an {@link ExitGuardSecurityManager} as the
+ * systems security manager which can trap a {@link System#exit(int)} during a
+ * security check.
+ * </p>
+ * <p>
+ * Note that this extension therefore needs to replace any existing security
+ * managers. While it reinstalls them after all tests are run, this can lead to
+ * unexpected behavior during all tests in the annotated class when a security
+ * manager was already present.
+ * </p>
+ * <p>
+ * Before each test the trap is activated and it is deactivated after the test.
+ * This is done to avoid trapping exits that are outside of the tests.
+ * </p>
+ */
+public final class ExitGuard
+        implements TestInstancePostProcessor, BeforeTestExecutionCallback, AfterTestExecutionCallback, AfterAllCallback
 {
     private static final String PREVISOUS_SECURITY_MANAGER_KEY = "PREV_SECMAN";
     private static final String EXIT_GUARD_SECURITY_MANAGER_KEY = "EXIT_SECMAN";
-
-    public static void assertExitWithCode(final int expectedExitCode, final Runnable runnable)
-    {
-        try
-        {
-            runnable.run();
-        } catch (final ExitSecurityException e)
-        {
-            assertEquals("Expected exit status code", expectedExitCode, e.getExitStatus());
-            return;
-        }
-        fail("Lambda did not cause a system exit as expected.");
-    }
 
     @Override
     public void postProcessTestInstance(final Object arg0, final ExtensionContext context) throws Exception
@@ -55,30 +59,28 @@ public final class ExitGuard implements TestInstancePostProcessor, ParameterReso
         return Namespace.create(ExitGuard.class);
     }
 
-    @Override
-    public boolean supportsParameter(final ParameterContext parameterContext, final ExtensionContext context)
-            throws ParameterResolutionException
+    private ExitGuardSecurityManager getExitGuardSecurityManager(final ExtensionContext context)
     {
-        return true;
+        return (ExitGuardSecurityManager) context.getStore(getNamespace()).get(EXIT_GUARD_SECURITY_MANAGER_KEY);
     }
 
     @Override
-    public Object resolveParameter(final ParameterContext parameterContext, final ExtensionContext context)
-            throws ParameterResolutionException
+    public void beforeTestExecution(final ExtensionContext context) throws Exception
     {
-        return getExitGuardSecurityHandler(context);
+        getExitGuardSecurityManager(context).trapExit(true);
     }
 
-    private Object getExitGuardSecurityHandler(final ExtensionContext context)
+    @Override
+    public void afterTestExecution(final ExtensionContext context) throws Exception
     {
-        return context.getStore(getNamespace()).get(EXIT_GUARD_SECURITY_MANAGER_KEY);
+        getExitGuardSecurityManager(context).trapExit(false);
     }
 
     @Override
     public void afterAll(final ExtensionContext context) throws Exception
     {
-//        final SecurityManager previousManager = (SecurityManager) context.getStore(getNamespace())
-//                .get(SECURITY_MANAGER_KEY);
-//        System.setSecurityManager(previousManager);
+        final SecurityManager previousManager = (SecurityManager) context.getStore(getNamespace())
+                .get(PREVISOUS_SECURITY_MANAGER_KEY);
+        System.setSecurityManager(previousManager);
     }
 }

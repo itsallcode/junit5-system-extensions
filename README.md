@@ -1,4 +1,4 @@
-# junit5-system-extensions
+# junit5-system-extensions (J5SE)
 
 This project provides a set of JUnit 5 extension that allow testing behavior related to functions related to `java.lang.System` (e.g. asserting exit status codes). 
 
@@ -35,4 +35,8 @@ class TestSystemExit
 }
 ```
 
-Note that in order to be able to trap system exit, the `ExitGuard` temporarily replaces the existing security manager (if any). 
+Note that in order to be able to trap system exit, the `ExitGuard` temporarily replaces the existing security manager (if any).
+
+## Contributing, Feature Requests and Error Reporting
+
+Please check our [contribution guide](.github/CONTRIBUTING.md) to learn how you can help with the project, report errors or request features.

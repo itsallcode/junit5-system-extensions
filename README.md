@@ -6,6 +6,12 @@ This project provides a set of JUnit 5 extension that allow testing behavior rel
 
 The extensions in this project were inspired by a set of JUnit4 rules called "[System Rules](https://stefanbirkner.github.io/system-rules/)" which were written by Stefan Brikner and licensed under the Common Public License 1.0 (CPL).
 
+## Runtime Dependencies
+
+| Dependency                                                                   | Purpose                                                | License                       |
+-------------------------------------------------------------------------------|--------------------------------------------------------|--------------------------------
+| [JUnit5](https://junit.org/junit5/)                                          | Unit test framework                                    | Eclipse Public License v2.0   |
+
 ## Usage
 
 ### Asserting `System.exit(int)` Calls

@@ -19,8 +19,8 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-import static org.itsallcode.junit.AssertExit.assertExit;
-import static org.itsallcode.junit.AssertExit.assertExitWithStatus;
+import static org.itsallcode.junit.sysextensions.AssertExit.assertExit;
+import static org.itsallcode.junit.sysextensions.AssertExit.assertExitWithStatus;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 

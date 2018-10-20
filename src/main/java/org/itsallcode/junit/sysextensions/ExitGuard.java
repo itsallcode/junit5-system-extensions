@@ -58,7 +58,7 @@ public final class ExitGuard
     private static final String EXIT_GUARD_SECURITY_MANAGER_KEY = "EXIT_SECMAN";
 
     @Override
-    public void postProcessTestInstance(final Object arg0, final ExtensionContext context) throws Exception
+    public void postProcessTestInstance(final Object testInstance, final ExtensionContext context)
     {
         saveCurrentSecurityManager(context);
         installExitGuardSecurityManager(context);

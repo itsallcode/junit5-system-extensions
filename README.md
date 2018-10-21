@@ -54,7 +54,7 @@ Please check our [contribution guide](.github/CONTRIBUTING.md) to learn how you 
 
 ### Build Time Dependencies
 
-The list below show all build time dependencies in alphabetical order. Note that except the Maven build tool all required modules are downloaded automatically by Maven.
+The list below show all build time dependencies in alphabetical order. Note that except the [Maven](https://maven.apache.org/) build tool all required modules are downloaded automatically by Maven.
 
 | Dependency                                                                   | Purpose                                                | License                       |
 -------------------------------------------------------------------------------|--------------------------------------------------------|--------------------------------

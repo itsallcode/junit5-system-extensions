@@ -17,13 +17,11 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>
@@ -92,4 +90,19 @@
         <name>itsallcode.org</name>
         <url>https://blog.itsallcode.org</url>
     </organization>
+    <developers>
+        <developer>
+            <id>redcatbear</id>
+            <url>https://github.com/redcatbear</url>
+            <organization>itsallcode</organization>
+            <organizationUrl>https://github.com/itsallcode</organizationUrl>
+        </developer>
+    </developers>
+    <distributionManagement>
+        <repository>
+            <id>bintray-maven-repo</id>
+            <url>junit5-system-extensions</url>
+        </repository>
+    </distributionManagement>
+    <url>https://github.com/itsallcode/junit5-system-extensions</url>
 </project>

@@ -1,0 +1,16 @@
+language: java
+
+jdk:
+  - oraclejdk8
+  - openjdk11
+
+cache:
+  directories:
+  - $HOME/.m2
+  - $HOME/.sonar/cache
+
+script:
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install
+
+after_success:
+- codecov

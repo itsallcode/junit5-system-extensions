@@ -1,6 +1,9 @@
 # junit5-system-extensions (J5SE)
 
-This project provides a set of JUnit 5 extension that allow testing behavior related to functions related to `java.lang.System` (e.g. asserting exit status codes). 
+This project provides a set of JUnit 5 extension that allow testing behavior related to functions related to `java.lang.System` (e.g. asserting exit status codes).
+
+[![Build Status](https://travis-ci.com/itsallcode/junit5-system-extensions.svg?branch=master)](https://travis-ci.com/itsallcode/junit5-system-extensions)
+[![Download](https://api.bintray.com/packages/itsallcode/itsallcode/junit5-system-extensions/images/download.svg)](https://bintray.com/itsallcode/itsallcode/junit5-system-extensions/_latestVersion)
 
 ## Acknowledgments
 
@@ -51,7 +54,7 @@ Please check our [contribution guide](.github/CONTRIBUTING.md) to learn how you 
 
 ### Build Time Dependencies
 
-The list below show all build time dependencies in alphabetical order. Note that except the Maven build tool all required modules are downloaded automatically by Maven.
+The list below show all build time dependencies in alphabetical order. Note that except the [Maven](https://maven.apache.org/) build tool all required modules are downloaded automatically by Maven.
 
 | Dependency                                                                   | Purpose                                                | License                       |
 -------------------------------------------------------------------------------|--------------------------------------------------------|--------------------------------

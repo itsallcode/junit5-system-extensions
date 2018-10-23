@@ -30,7 +30,7 @@ import org.junit.jupiter.api.extension.ExtensionContext.Namespace;
 
 /**
  * This class implements a JUnit extension that lets you capture data written to
- * {@link System#out}.
+ * {@link System#err}.
  *
  * <p>
  * For this it provides the user with a special kind of {@link OutputStream},
@@ -44,10 +44,9 @@ import org.junit.jupiter.api.extension.ExtensionContext.Namespace;
  * For the user's convenience capturing is automatically reset before each call
  * to the method annotated with <code>@Before</code>.
  */
-public class SystemOutGuard extends AbstractSystemOutputGuard
-
+public class SystemErrGuard extends AbstractSystemOutputGuard
 {
-    private static final Namespace NAMESPACE = Namespace.create(SystemOutGuard.class);
+    private static final Namespace NAMESPACE = Namespace.create(SystemErrGuard.class);
 
     @Override
     protected Namespace getNamespace()
@@ -58,12 +57,12 @@ public class SystemOutGuard extends AbstractSystemOutputGuard
     @Override
     protected PrintStream getSystemStream()
     {
-        return System.out;
+        return System.err;
     }
 
     @Override
     protected void setSystemStream(final PrintStream systemStream)
     {
-        System.setOut(systemStream);
+        System.setErr(systemStream);
     }
 }

@@ -10,12 +10,12 @@ package org.itsallcode.io;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -41,10 +41,10 @@ import java.io.OutputStream;
  * To avoid capturing unwanted data, capturing must be explicitly enabled by
  * calling {@link #capture()}.
  */
-public class CapturingOutputStream extends OutputStream
+public class CapturingOutputStream extends OutputStream implements Capturable
 {
-    OutputStream targetStream;
-    ByteArrayOutputStream internalStream;
+    private OutputStream targetStream;
+    private ByteArrayOutputStream internalStream;
     private boolean capture;
 
     public CapturingOutputStream(final OutputStream targetStream)
@@ -102,27 +102,19 @@ public class CapturingOutputStream extends OutputStream
         super.close();
     }
 
-    /**
-     * Activate capturing
-     */
+    @Override
     public void capture()
     {
         this.capture = true;
     }
 
-    /**
-     * Get the data that was captured.
-     *
-     * @return captured data.
-     */
+    @Override
     public String getCapturedData()
     {
         return this.internalStream.toString();
     }
 
-    /**
-     * Reset the captured data buffer and switch capturing off
-     */
+    @Override
     public void resetCapturing()
     {
         this.capture = false;

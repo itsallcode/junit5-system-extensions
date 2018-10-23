@@ -28,8 +28,8 @@ import org.itsallcode.io.Capturable;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-@ExtendWith(SystemOutGuard.class)
-class TestSystemOut
+@ExtendWith(SystemErrGuard.class)
+class TestSystemErr
 {
     @Test
     void testCapture(final Capturable stream)
@@ -42,10 +42,10 @@ class TestSystemOut
     void testCaptureA(final Capturable stream)
     {
         final String ignored = "Ignore this text here." + System.lineSeparator();
-        System.out.print(ignored);
+        System.err.print(ignored);
         stream.capture();
         final String expected = "This text must be captured." + System.lineSeparator();
-        System.out.print(expected);
+        System.err.print(expected);
         assertEquals(stream.getCapturedData(), expected);
     }
 
@@ -53,10 +53,10 @@ class TestSystemOut
     void testCaptureB(final Capturable stream)
     {
         final String ignored = "We repeat the test to see if resetting works." + System.lineSeparator();
-        System.out.print(ignored);
+        System.err.print(ignored);
         stream.capture();
         final String expected = "Again: this must be captured." + System.lineSeparator();
-        System.out.print(expected);
+        System.err.print(expected);
         assertEquals(stream.getCapturedData(), expected);
     }
 }

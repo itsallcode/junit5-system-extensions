@@ -48,7 +48,7 @@ Note that in order to be able to trap system exit, the `ExitGuard` temporarily r
 To capture data sent to `System.out`, follow these steps:
 
 1. Extend the test class with `SystemOutGuard`
-2. Add a parameter of type `CapturingOutputStream` to the test method (or the before-all-method)
+2. Add a parameter of type `Capturable` to the test method (or the before-all-method)
 3. Activate capturing on the stream
 4. Run code under test
 5. Check captured data
@@ -58,7 +58,7 @@ Example:
 ```java
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.itsallcode.io.CapturingOutputStream;
+import org.itsallcode.io.Capturable;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -66,7 +66,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 class TestSystemOut
 {
     @Test
-    void testCaptureA(final CapturingOutputStream stream)
+    void testCapture(final Capturable stream)
     {
         stream.capture();
         final String expected = "This text must be captured.";
@@ -75,6 +75,10 @@ class TestSystemOut
     }
 }
 ```
+
+## Asserting Data Sent to `System.err`
+
+Capturing data sent to `System.err` works in the exact same way as in the [`System.out` case](#asserting-data-sent-to-system-out). The only difference is that you need to extend the test class with the `SystemErrGuard`.
 
 ## Contributing, Feature Requests and Error Reporting
 

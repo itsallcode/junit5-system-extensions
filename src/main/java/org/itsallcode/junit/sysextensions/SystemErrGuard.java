@@ -29,11 +29,9 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import java.lang.reflect.Parameter;
 
 import org.itsallcode.io.Capturable;
 import org.junit.jupiter.api.extension.ExtensionContext.Namespace;
-import org.junit.jupiter.api.extension.ParameterContext;
 
 /**
  * This class implements a JUnit extension that lets you capture data written to
@@ -85,9 +83,8 @@ public class SystemErrGuard extends AbstractSystemOutputGuard
     }
 
     @Override
-    protected boolean isCompatibleAnnotation(final ParameterContext parameterContext)
+    protected Class<SysErr> getParameterAnnotation()
     {
-        final Parameter parameter = parameterContext.getParameter();
-        return (parameter.getAnnotations().length == 0) || parameter.isAnnotationPresent(SysErr.class);
+        return SysErr.class;
     }
 }

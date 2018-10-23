@@ -24,7 +24,9 @@ package org.itsallcode.junit.sysextensions;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Executable;
+import java.lang.reflect.Parameter;
 
 import org.itsallcode.io.Capturable;
 import org.itsallcode.io.CapturingOutputStream;
@@ -107,7 +109,14 @@ public abstract class AbstractSystemOutputGuard
         return (parameterContext.getParameter().getType().equals(Capturable.class));
     }
 
-    protected abstract boolean isCompatibleAnnotation(final ParameterContext parameterContext);
+    private boolean isCompatibleAnnotation(final ParameterContext parameterContext)
+    {
+        final Parameter parameter = parameterContext.getParameter();
+        return (parameter.getAnnotations().length == 0) || parameter.isAnnotationPresent(getParameterAnnotation());
+
+    }
+
+    protected abstract Class<? extends Annotation> getParameterAnnotation();
 
     @Override
     public Object resolveParameter(final ParameterContext parameterContext, final ExtensionContext extensionContext)

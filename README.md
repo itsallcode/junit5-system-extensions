@@ -43,6 +43,39 @@ class TestSystemExit
 
 Note that in order to be able to trap system exit, the `ExitGuard` temporarily replaces the existing security manager (if any).
 
+## Asserting Data Sent to `System.out`
+
+To capture data sent to `System.out`, follow these steps:
+
+1. Extend the test class with `SystemOutGuard`
+2. Add a parameter of type `CapturingOutputStream` to the test method (or the before-all-method)
+3. Activate capturing on the stream
+4. Run code under test
+5. Check captured data
+
+Example:
+
+```java
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.itsallcode.io.CapturingOutputStream;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+@ExtendWith(SystemOutGuard.class)
+class TestSystemOut
+{
+    @Test
+    void testCaptureA(final CapturingOutputStream stream)
+    {
+        stream.capture();
+        final String expected = "This text must be captured.";
+        System.out.print(expected);
+        assertEquals(stream.getCapturedData(), expected);
+    }
+}
+```
+
 ## Contributing, Feature Requests and Error Reporting
 
 Please check our [contribution guide](.github/CONTRIBUTING.md) to learn how you can help with the project, report errors or request features.

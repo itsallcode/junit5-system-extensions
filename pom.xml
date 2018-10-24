@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.itsallcode</groupId>
     <artifactId>junit5-system-extensions</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
     <name>JUnit5 System Extensions</name>
     <description>These extensions help testing behavior that is related to `System.x` calls like `exit(int).</description>
     <properties>
@@ -17,7 +17,6 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

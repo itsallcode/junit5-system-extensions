@@ -90,9 +90,12 @@ Please check our [contribution guide](.github/CONTRIBUTING.md) to learn how you 
 
 The list below show all build time dependencies in alphabetical order. Note that except the Maven build tool all required modules are downloaded automatically by Maven.
 
-| Dependency                                                                   | Purpose                                                | License                       |
--------------------------------------------------------------------------------|--------------------------------------------------------|--------------------------------
-| [Apache Maven](https://maven.apache.org/)                                    | Build tool                                             | Apache License 2.0            |
+| Dependency                                                                       | Purpose                                                | License                       |
+-----------------------------------------------------------------------------------|--------------------------------------------------------|--------------------------------
+| [Apache Maven](https://maven.apache.org/)                                        | Build tool                                             | Apache License 2.0            |
+| [License Maven Plugin](https://www.mojohaus.org/license-maven-plugin/)           | Add licenses to source files automatically             | GNU Public License 3.0        |
+| [Maven Compiler Plugin](https://maven.apache.org/plugins/maven-compiler-plugin/) | Maven provided and controlled Java compiler            | Apache License 2.0            |
+
 
 ### Essential Build Steps
 

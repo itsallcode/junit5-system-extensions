@@ -95,7 +95,8 @@ The list below show all build time dependencies in alphabetical order. Note that
 | [Apache Maven](https://maven.apache.org/)                                        | Build tool                                             | Apache License 2.0            |
 | [License Maven Plugin](https://www.mojohaus.org/license-maven-plugin/)           | Add licenses to source files automatically             | GNU Public License 3.0        |
 | [Maven Compiler Plugin](https://maven.apache.org/plugins/maven-compiler-plugin/) | Maven provided and controlled Java compiler            | Apache License 2.0            |
-
+| [Maven Source Plugin](https://maven.apache.org/plugins/maven-source-plugin/)     | Create Source JAR packages                             | Apache License 2.0            |
+| [Maven JavaDoc Plugin](https://maven.apache.org/plugins/maven-javadoc-plugin/)   | Create JavaDoc JAR packages                            | Apache License 2.0            |
 
 ### Essential Build Steps
 

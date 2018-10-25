@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.itsallcode</groupId>
     <artifactId>junit5-system-extensions</artifactId>
-    <version>0.2.0</version>
+    <version>1.0.0</version>
     <name>JUnit5 System Extensions</name>
     <description>These extensions help testing behavior that is related to `System.x` calls like `exit(int).</description>
     <properties>
@@ -49,15 +49,16 @@
                 <configuration>
                     <verbose>false</verbose>
                     <detail>true</detail>
-                    <licenseName>gpl_v3</licenseName>
+                    <licenseName>epl_v2</licenseName><!-- same license as JUnit5 -->
+                    <licenseResolver>${project.baseUri}/src/license</licenseResolver>
                     <organizationName>itsallcode.org</organizationName>
-                    <inceptionYear>2016</inceptionYear>
+                    <inceptionYear>2018</inceptionYear>
                     <excludes>
-                        <exclude>
-                            test/resources/specobject/*.xml
-                        </exclude>
                         <exclude>**/*.css</exclude>
                         <exclude>**/*.html</exclude>
+                        <exclude>**/*.md</exclude>
+                        <exclude>**/*.properties</exclude>
+                        <exclude>**/*.ftl</exclude>
                     </excludes>
                     <failOnMissingHeader>true</failOnMissingHeader>
                     <failIfWarning>true</failIfWarning>

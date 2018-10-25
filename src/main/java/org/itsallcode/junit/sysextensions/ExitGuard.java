@@ -4,21 +4,12 @@ package org.itsallcode.junit.sysextensions;
  * #%L
  * JUnit5 System Extensions
  * %%
- * Copyright (C) 2016 - 2018 itsallcode.org
+ * Copyright (C) 2018 itsallcode.org
  * %%
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/gpl-3.0.html>.
+ * All rights reserved. This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v2.0 which accompanies this distribution and is available at
+ *
+ * http://www.eclipse.org/legal/epl-v20.html
  * #L%
  */
 
@@ -30,27 +21,6 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.ExtensionContext.Namespace;
 import org.junit.jupiter.api.extension.TestInstancePostProcessor;
 
-/**
- * This class implements a set of extension points for JUnit5 tests in order to
- * enable trapping system exit calls.
- *
- * <p>
- * At the time of the instantiation of a test class which is extended with this
- * class, {@link ExitGuard} installs an {@link ExitGuardSecurityManager} as the
- * systems security manager which can trap a {@link System#exit(int)} during a
- * security check.
- * </p>
- * <p>
- * Note that this extension therefore needs to replace any existing security
- * managers. While it reinstalls them after all tests are run, this can lead to
- * unexpected behavior during all tests in the annotated class when a security
- * manager was already present.
- * </p>
- * <p>
- * Before each test the trap is activated and it is deactivated after the test.
- * This is done to avoid trapping exits that are outside of the tests.
- * </p>
- */
 public final class ExitGuard
         implements TestInstancePostProcessor, BeforeTestExecutionCallback, AfterTestExecutionCallback, AfterAllCallback
 {

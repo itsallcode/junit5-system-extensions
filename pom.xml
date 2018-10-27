@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.itsallcode</groupId>
     <artifactId>junit5-system-extensions</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <name>JUnit5 System Extensions</name>
     <description>These extensions help testing behavior that is related to `System.x` calls like `exit(int).</description>
     <properties>

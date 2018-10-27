@@ -19,20 +19,20 @@ import java.io.OutputStream;
 
 public class CapturingOutputStream extends OutputStream implements Capturable
 {
-    private OutputStream targetStream;
-    private ByteArrayOutputStream internalStream;
-    private boolean capture;
+    private OutputStream targetStream = null;
+    private ByteArrayOutputStream internalStream = null;
+    private String captureBuffer = null;
 
     public CapturingOutputStream(final OutputStream targetStream)
     {
+        assert (targetStream != null);
         this.targetStream = targetStream;
-        resetCapturing();
     }
 
     @Override
     public void write(final int b) throws IOException
     {
-        if (this.capture)
+        if (this.internalStream != null)
         {
             this.internalStream.write(b);
         }
@@ -45,7 +45,7 @@ public class CapturingOutputStream extends OutputStream implements Capturable
     @Override
     public void write(final byte[] b, final int off, final int len) throws IOException
     {
-        if (this.capture)
+        if (this.internalStream != null)
         {
             this.internalStream.write(b, off, len);
         }
@@ -58,7 +58,7 @@ public class CapturingOutputStream extends OutputStream implements Capturable
     @Override
     public void flush() throws IOException
     {
-        if (this.capture)
+        if (this.internalStream != null)
         {
             this.internalStream.flush();
         }
@@ -69,9 +69,13 @@ public class CapturingOutputStream extends OutputStream implements Capturable
     }
 
     @Override
-    public void close() throws IOException
+    public synchronized void close() throws IOException
     {
-        this.internalStream.close();
+        if (this.internalStream != null)
+        {
+            this.captureBuffer = this.internalStream.toString();
+            this.internalStream.close();
+        }
         this.internalStream = null;
         this.targetStream = null;
         // closing the targetStream is the responsibility of the class which opened it.
@@ -81,19 +85,23 @@ public class CapturingOutputStream extends OutputStream implements Capturable
     @Override
     public void capture()
     {
-        this.capture = true;
+        this.internalStream = new ByteArrayOutputStream();
     }
 
     @Override
     public String getCapturedData()
     {
-        return this.internalStream.toString();
+        if (this.internalStream == null)
+        {
+            return getDataFromCaptureBuffer();
+        } else
+        {
+            return this.internalStream.toString();
+        }
     }
 
-    @Override
-    public void resetCapturing()
+    private String getDataFromCaptureBuffer()
     {
-        this.capture = false;
-        this.internalStream = new ByteArrayOutputStream();
+        return (this.captureBuffer == null) ? "" : this.captureBuffer;
     }
 }

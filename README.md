@@ -129,5 +129,4 @@ The list below show all build time dependencies in alphabetical order. Note that
 1. Create a [release](https://github.com/itsallcode/junit5-system-extensions/releases) of the `master` branch on GitHub.
 1. Sign in at [bintray.com](https://bintray.com)
 1. Go to the [Bintray project page](https://bintray.com/itsallcode/itsallcode/junit5-system-extensions)
-1. There should be a notice saying "You have 6 unpublished item(s) for this package". Click the "Publish" link. Binaries will be available for download at [JCenter](https://jcenter.bintray.com/org/itsallcode/junit5-system-extensions/)
 1. Publish to Maven Central by clicking the "Sync" button at https://bintray.com/itsallcode/itsallcode/junit5-system-extensions#central. After some time the new version will appear at https://repo1.maven.org/maven2/org/itsallcode/junit5-system-extensions/.

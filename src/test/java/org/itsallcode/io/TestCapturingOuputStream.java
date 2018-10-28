@@ -14,7 +14,6 @@ package org.itsallcode.io;
  */
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
@@ -36,7 +35,7 @@ class TestCapturingOuputStream
     }
 
     @Test
-    void testWithBufferedOutputStreamOnTopOfSystemOut()
+    void testWithBufferedOutputStreamOnTopOfSystemOut() throws IOException
     {
         final PrintStream previousOut = System.out;
         try
@@ -49,9 +48,6 @@ class TestCapturingOuputStream
             {
                 bufferedStream.write(expected.getBytes());
                 bufferedStream.flush();
-            } catch (final IOException e)
-            {
-                fail("Unable to write test data to buffered stream");
             }
             assertEquals(expected, stream.getCapturedData());
         } finally

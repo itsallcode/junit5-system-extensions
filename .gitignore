@@ -1,6 +1,10 @@
-.classpath
-.project
+/.classpath
+/.project
 **/*.bak
 **/*.log
 **/*.out
-target
+/target
+/bin
+
+/bin
+

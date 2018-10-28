@@ -28,6 +28,11 @@
             <email>github@chp1.net</email>
         </developer>
     </developers>
+    <scm>
+        <connection>scm:git:https://github.com/itsallcode/junit5-system-extensions.git</connection>
+        <developerConnection>scm:git:https://github.com/itsallcode/junit5-system-extensions.git</developerConnection>
+        <url>https://github.com/itsallcode/junit5-system-extensions</url>
+    </scm>
     <properties>
         <java.version>1.8</java.version>
         <junit.version>5.3.1</junit.version>

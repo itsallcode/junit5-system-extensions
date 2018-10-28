@@ -29,7 +29,7 @@ public class SystemOutGuard extends AbstractSystemOutputGuard
 
     /**
      * This annotation can be used on a parameter of type {@link Capturable} to
-     * ensure that the placeholder for <code>System.out</code is injected.
+     * ensure that the placeholder for <code>System.out</code> is injected.
      */
     @Target(ElementType.PARAMETER)
     @Retention(RetentionPolicy.RUNTIME)

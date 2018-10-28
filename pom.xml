@@ -144,6 +144,9 @@
                     <organizationName>itsallcode.org</organizationName>
                     <inceptionYear>2018</inceptionYear>
                     <excludes>
+                        <exclude>
+                            test/resources/specobject/*.xml
+                        </exclude>
                         <exclude>**/*.css</exclude>
                         <exclude>**/*.html</exclude>
                         <exclude>**/*.md</exclude>

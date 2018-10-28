@@ -9,6 +9,7 @@ cache:
   - $HOME/.m2
   - $HOME/.sonar/cache
 
+<<<<<<< HEAD
 before_script:
   - pip install --user codecov
 
@@ -17,3 +18,10 @@ script:
 
 after_success:
 - codecov
+=======
+script:
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install
+
+after_success:
+- codecov
+>>>>>>> refs/remotes/origin/master

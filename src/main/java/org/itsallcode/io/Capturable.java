@@ -26,9 +26,4 @@ public interface Capturable
      * @return captured data.
      */
     public String getCapturedData();
-
-    /**
-     * Reset the captured data buffer and switch capturing off
-     */
-    public void resetCapturing();
 }

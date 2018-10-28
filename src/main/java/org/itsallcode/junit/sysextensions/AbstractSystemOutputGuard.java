@@ -23,8 +23,7 @@ import org.itsallcode.io.Capturable;
 import org.itsallcode.io.CapturingOutputStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.AfterAllCallback;
-import org.junit.jupiter.api.extension.BeforeAllCallback;
+import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.ExtensionContext.Namespace;
@@ -32,14 +31,13 @@ import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.api.extension.ParameterResolutionException;
 import org.junit.jupiter.api.extension.ParameterResolver;
 
-public abstract class AbstractSystemOutputGuard
-        implements BeforeAllCallback, BeforeEachCallback, ParameterResolver, AfterAllCallback
+public abstract class AbstractSystemOutputGuard implements BeforeEachCallback, ParameterResolver, AfterEachCallback
 {
     protected static final String PREVIOUS_OUTPUT_STREAM_KEY = "PREV_OSTREAM";
     protected static final String CAPTURING_OUTPUT_STREAM_KEY = "CAPT_OSTREAM";
 
     @Override
-    public void beforeAll(final ExtensionContext context) throws Exception
+    public void beforeEach(final ExtensionContext context) throws Exception
     {
         saveCurrentSystemStream(context);
         flushSystemStream();
@@ -69,12 +67,6 @@ public abstract class AbstractSystemOutputGuard
     }
 
     protected abstract void setSystemStream(final PrintStream systemStream);
-
-    @Override
-    public void beforeEach(final ExtensionContext context) throws Exception
-    {
-        getCapturingOutputStream(context).resetCapturing();
-    }
 
     protected CapturingOutputStream getCapturingOutputStream(final ExtensionContext context)
     {
@@ -117,7 +109,7 @@ public abstract class AbstractSystemOutputGuard
     }
 
     @Override
-    public void afterAll(final ExtensionContext context) throws Exception
+    public void afterEach(final ExtensionContext context) throws Exception
     {
         restorePreviousSystemStream(context);
         closeCapturingOutputStream(context);

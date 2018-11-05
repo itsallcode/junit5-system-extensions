@@ -46,6 +46,43 @@ class TestSystemExit
 
 Note that in order to be able to trap system exit, the `ExitGuard` temporarily replaces the existing security manager (if any).
 
+## Asserting Data Sent to `System.out`
+
+To capture data sent to `System.out`, follow these steps:
+
+1. Extend the test class with `SystemOutGuard`
+2. Add a parameter of type `Capturable` to the test method (or the before-all-method)
+3. Activate capturing on the stream
+4. Run code under test
+5. Check captured data
+
+Example:
+
+```java
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.itsallcode.io.Capturable;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+@ExtendWith(SystemOutGuard.class)
+class TestSystemOut
+{
+    @Test
+    void testCapture(final Capturable stream)
+    {
+        stream.capture();
+        final String expected = "This text must be captured.";
+        System.out.print(expected);
+        assertEquals(stream.getCapturedData(), expected);
+    }
+}
+```
+
+## Asserting Data Sent to `System.err`
+
+Capturing data sent to `System.err` works in the exact same way as in the [`System.out` case](#asserting-data-sent-to-system-out). The only difference is that you need to extend the test class with the `SystemErrGuard`.
+
 ## Contributing, Feature Requests and Error Reporting
 
 Please check our [contribution guide](.github/CONTRIBUTING.md) to learn how you can help with the project, report errors or request features.
@@ -56,12 +93,43 @@ Please check our [contribution guide](.github/CONTRIBUTING.md) to learn how you 
 
 The list below show all build time dependencies in alphabetical order. Note that except the [Maven](https://maven.apache.org/) build tool all required modules are downloaded automatically by Maven.
 
-| Dependency                                                                   | Purpose                                                | License                       |
--------------------------------------------------------------------------------|--------------------------------------------------------|--------------------------------
-| [Apache Maven](https://maven.apache.org/)                                    | Build tool                                             | Apache License 2.0            |
+| Dependency                                                                       | Purpose                                                | License                       |
+-----------------------------------------------------------------------------------|--------------------------------------------------------|--------------------------------
+| [Apache Maven](https://maven.apache.org/)                                        | Build tool                                             | Apache License 2.0            |
+| [License Maven Plugin](https://www.mojohaus.org/license-maven-plugin/)           | Add licenses to source files automatically             | GNU Public License 3.0        |
+| [Maven Compiler Plugin](https://maven.apache.org/plugins/maven-compiler-plugin/) | Maven provided and controlled Java compiler            | Apache License 2.0            |
+| [Maven Source Plugin](https://maven.apache.org/plugins/maven-source-plugin/)     | Create Source JAR packages                             | Apache License 2.0            |
+| [Maven JavaDoc Plugin](https://maven.apache.org/plugins/maven-javadoc-plugin/)   | Create JavaDoc JAR packages                            | Apache License 2.0            |
 
 ### Essential Build Steps
 
 * `git clone https://github.com/itsallcode/junit5-system-extensions.git`
 * Run `mvn test` to run unit tests.
 * Run `mvn package` to create the JAR file.
+
+### Publishing to JCenter
+
+1. Add the following to your `~/.m2/settings.xml`:
+
+    ```xml
+    <servers>
+        <server>
+            <id>itsallcode-maven-repo</id>
+            <username>[bintray-username]</username>
+            <password>[bintray-api-key]</password>
+        </server>
+    </servers>
+    ```
+
+1. Checkout the `develop` branch.
+1. Update version in `pom.xml` and `README.md`, commit and push.
+1. Run command
+
+    ```bash
+    mvn deploy
+    ```
+1. Merge to `master` branch
+1. Create a [release](https://github.com/itsallcode/junit5-system-extensions/releases) of the `master` branch on GitHub.
+1. Sign in at [bintray.com](https://bintray.com)
+1. Go to the [Bintray project page](https://bintray.com/itsallcode/itsallcode/junit5-system-extensions)
+1. Publish to Maven Central by clicking the "Sync" button at https://bintray.com/itsallcode/itsallcode/junit5-system-extensions#central. After some time the new version will appear at https://repo1.maven.org/maven2/org/itsallcode/junit5-system-extensions/.

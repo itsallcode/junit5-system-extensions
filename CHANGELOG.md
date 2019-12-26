@@ -8,4 +8,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-* Allow muting `SystemErrGuard` and `SystemOutGuard` [issue #16](https://github.com/itsallcode/junit5-system-extensions/issues/16).
+* Allow capturing output without forwarding to `System.out` and `System.err` by calling `Capturable.captureMuted()` instead of `Capturable.capture()`  [issue #16](https://github.com/itsallcode/junit5-system-extensions/issues/16).

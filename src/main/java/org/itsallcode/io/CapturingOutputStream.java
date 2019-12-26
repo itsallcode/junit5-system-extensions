@@ -23,6 +23,7 @@ public class CapturingOutputStream extends OutputStream implements Capturable
     private OutputStream targetStream = null;
     private ByteArrayOutputStream internalStream = null;
     private String captureBuffer = null;
+    private boolean forwardOutputToTarget = true;
 
     public CapturingOutputStream(final OutputStream targetStream)
     {
@@ -36,7 +37,7 @@ public class CapturingOutputStream extends OutputStream implements Capturable
         {
             this.internalStream.write(b);
         }
-        if (this.targetStream != null)
+        if (this.forwardOutputToTarget && (this.targetStream != null))
         {
             this.targetStream.write(b);
         }
@@ -49,7 +50,7 @@ public class CapturingOutputStream extends OutputStream implements Capturable
         {
             this.internalStream.write(b, off, len);
         }
-        if (this.targetStream != null)
+        if (this.forwardOutputToTarget && (this.targetStream != null))
         {
             this.targetStream.write(b, off, len);
         }
@@ -86,6 +87,13 @@ public class CapturingOutputStream extends OutputStream implements Capturable
     public void capture()
     {
         this.internalStream = new ByteArrayOutputStream();
+    }
+
+    @Override
+    public void captureMuted()
+    {
+        this.forwardOutputToTarget = false;
+        capture();
     }
 
     @Override

@@ -16,6 +16,7 @@ package org.itsallcode.io;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Objects;
 
 public class CapturingOutputStream extends OutputStream implements Capturable
 {
@@ -25,8 +26,7 @@ public class CapturingOutputStream extends OutputStream implements Capturable
 
     public CapturingOutputStream(final OutputStream targetStream)
     {
-        assert (targetStream != null);
-        this.targetStream = targetStream;
+        this.targetStream = Objects.requireNonNull(targetStream, "targetStream");
     }
 
     @Override

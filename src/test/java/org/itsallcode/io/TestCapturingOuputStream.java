@@ -23,10 +23,22 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class TestCapturingOuputStream
 {
+    private static final byte[] CONTENT = "content".getBytes();
+    private OutputStream delegate;
+    private CapturingOutputStream streamWithMockDelegate;
+
+    @BeforeEach
+    void setup()
+    {
+        this.delegate = mock(OutputStream.class);
+        this.streamWithMockDelegate = new CapturingOutputStream(this.delegate);
+    }
+
     @Test
     void testGetCapturedDataAfterClose() throws IOException
     {
@@ -74,35 +86,26 @@ class TestCapturingOuputStream
     @Test
     void testOutputForwardedWhenCapturing() throws IOException
     {
-        final OutputStream delegate = mock(OutputStream.class);
-        final CapturingOutputStream stream = new CapturingOutputStream(delegate);
-        stream.capture();
-        final byte[] content = "content".getBytes();
-        stream.write(content);
-        stream.close();
-        verify(delegate).write(content, 0, 7);
+        this.streamWithMockDelegate.capture();
+        this.streamWithMockDelegate.write(CONTENT);
+        this.streamWithMockDelegate.close();
+        verify(this.delegate).write(CONTENT, 0, CONTENT.length);
     }
 
     @Test
     void testOutputForwardedWhenNotCapturing() throws IOException
     {
-        final OutputStream delegate = mock(OutputStream.class);
-        final CapturingOutputStream stream = new CapturingOutputStream(delegate);
-        final byte[] content = "content".getBytes();
-        stream.write(content);
-        stream.close();
-        verify(delegate).write(content, 0, 7);
+        this.streamWithMockDelegate.write(CONTENT);
+        this.streamWithMockDelegate.close();
+        verify(this.delegate).write(CONTENT, 0, CONTENT.length);
     }
 
     @Test
     void testOutputNotForwardedWhenCapturingInMuteMode() throws IOException
     {
-        final OutputStream delegate = mock(OutputStream.class);
-        final CapturingOutputStream stream = new CapturingOutputStream(delegate);
-        stream.captureMuted();
-        final byte[] content = "content\n".getBytes();
-        stream.write(content);
-        stream.close();
-        verifyNoInteractions(delegate);
+        this.streamWithMockDelegate.captureMuted();
+        this.streamWithMockDelegate.write(CONTENT);
+        this.streamWithMockDelegate.close();
+        verifyNoInteractions(this.delegate);
     }
 }

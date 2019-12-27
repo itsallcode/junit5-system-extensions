@@ -15,10 +15,6 @@ The extensions in this project were inspired by a set of JUnit4 rules called "[S
 -------------------------------------------------------------------------------|--------------------------------------------------------|--------------------------------
 | [JUnit5](https://junit.org/junit5/)                                          | Unit test framework                                    | Eclipse Public License v2.0   |
 
-## Changelog
-
-See [CHANGELOG.md](CHANGELOG.md).
-
 ## Usage
 
 ### Asserting `System.exit(int)` Calls

@@ -14,7 +14,6 @@ The extensions in this project were inspired by a set of JUnit4 rules called "[S
 | Dependency                                                                   | Purpose                                                | License                       |
 -------------------------------------------------------------------------------|--------------------------------------------------------|--------------------------------
 | [JUnit5](https://junit.org/junit5/)                                          | Unit test framework                                    | Eclipse Public License v2.0   |
-| [Mockito](https://site.mockito.org/)                                         | Mocking framework                                      | MIT License                   |
 
 ## Usage
 
@@ -101,6 +100,7 @@ The list below show all build time dependencies in alphabetical order. Note that
 | [Maven Compiler Plugin](https://maven.apache.org/plugins/maven-compiler-plugin/) | Maven provided and controlled Java compiler            | Apache License 2.0            |
 | [Maven Source Plugin](https://maven.apache.org/plugins/maven-source-plugin/)     | Create Source JAR packages                             | Apache License 2.0            |
 | [Maven JavaDoc Plugin](https://maven.apache.org/plugins/maven-javadoc-plugin/)   | Create JavaDoc JAR packages                            | Apache License 2.0            |
+| [Mockito](https://site.mockito.org/)                                             | Mocking framework                                      | MIT License                   |
 
 ### Essential Build Steps
 

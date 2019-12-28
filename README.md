@@ -79,6 +79,8 @@ class TestSystemOut
 }
 ```
 
+To mute the output (i.e. don't forward output to `System.out` / `System.err`) call `stream.captureMuted()` instead of `stream.capture()`. This can be useful to speed up unit tests.
+
 ## Asserting Data Sent to `System.err`
 
 Capturing data sent to `System.err` works in the exact same way as in the [`System.out` case](#asserting-data-sent-to-system-out). The only difference is that you need to extend the test class with the `SystemErrGuard`.

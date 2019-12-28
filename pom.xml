@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.itsallcode</groupId>
     <artifactId>junit5-system-extensions</artifactId>
-    <version>1.0.3</version>
+    <version>1.1.0</version>
     <name>JUnit5 System Extensions</name>
     <description>These extensions help testing behavior that is related to `System.x` calls like `exit(int).</description>
     <url>https://github.com/itsallcode/junit5-system-extensions</url>
@@ -64,6 +64,12 @@
             <version>${junit.platform.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>3.2.4</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -102,6 +108,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <source>8</source>
                     <charset>UTF-8</charset>
                     <doclint></doclint>
                     <serialwarn>true</serialwarn>

@@ -24,7 +24,7 @@ import org.junit.jupiter.api.extension.TestInstancePostProcessor;
 public final class ExitGuard
         implements TestInstancePostProcessor, BeforeTestExecutionCallback, AfterTestExecutionCallback, AfterAllCallback
 {
-    private static final String PREVISOUS_SECURITY_MANAGER_KEY = "PREV_SECMAN";
+    private static final String PREVIOUS_SECURITY_MANAGER_KEY = "PREV_SECMAN";
     private static final String EXIT_GUARD_SECURITY_MANAGER_KEY = "EXIT_SECMAN";
 
     @Override
@@ -36,7 +36,7 @@ public final class ExitGuard
 
     private void saveCurrentSecurityManager(final ExtensionContext context)
     {
-        context.getStore(getNamespace()).put(PREVISOUS_SECURITY_MANAGER_KEY, System.getSecurityManager());
+        context.getStore(getNamespace()).put(PREVIOUS_SECURITY_MANAGER_KEY, System.getSecurityManager());
     }
 
     private void installExitGuardSecurityManager(final ExtensionContext context)
@@ -72,7 +72,7 @@ public final class ExitGuard
     public void afterAll(final ExtensionContext context) throws Exception
     {
         final SecurityManager previousManager = (SecurityManager) context.getStore(getNamespace())
-                .get(PREVISOUS_SECURITY_MANAGER_KEY);
+                .get(PREVIOUS_SECURITY_MANAGER_KEY);
         System.setSecurityManager(previousManager);
     }
 }

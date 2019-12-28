@@ -79,6 +79,8 @@ class TestSystemOut
 }
 ```
 
+To mute the output (i.e. don't forward output to `System.out` / `System.err`) call `stream.captureMuted()` instead of `stream.capture()`. This can be useful to speed up unit tests.
+
 ## Asserting Data Sent to `System.err`
 
 Capturing data sent to `System.err` works in the exact same way as in the [`System.out` case](#asserting-data-sent-to-system-out). The only difference is that you need to extend the test class with the `SystemErrGuard`.
@@ -100,6 +102,7 @@ The list below show all build time dependencies in alphabetical order. Note that
 | [Maven Compiler Plugin](https://maven.apache.org/plugins/maven-compiler-plugin/) | Maven provided and controlled Java compiler            | Apache License 2.0            |
 | [Maven Source Plugin](https://maven.apache.org/plugins/maven-source-plugin/)     | Create Source JAR packages                             | Apache License 2.0            |
 | [Maven JavaDoc Plugin](https://maven.apache.org/plugins/maven-javadoc-plugin/)   | Create JavaDoc JAR packages                            | Apache License 2.0            |
+| [Mockito](https://site.mockito.org/)                                             | Mocking framework                                      | MIT License                   |
 
 ### Essential Build Steps
 

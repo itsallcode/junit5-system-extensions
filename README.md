@@ -4,6 +4,7 @@ This project provides a set of JUnit 5 extension that allow testing behavior rel
 
 [![Build Status](https://travis-ci.com/itsallcode/junit5-system-extensions.svg?branch=master)](https://travis-ci.com/itsallcode/junit5-system-extensions)
 [![Download](https://api.bintray.com/packages/itsallcode/itsallcode/junit5-system-extensions/images/download.svg)](https://bintray.com/itsallcode/itsallcode/junit5-system-extensions/_latestVersion)
+[![Maven Central](https://img.shields.io/maven-central/v/org.itsallcode/junit5-system-extensions)](https://search.maven.org/artifact/org.itsallcode/junit5-system-extensions)
 
 ## Acknowledgments
 

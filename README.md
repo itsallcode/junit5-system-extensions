@@ -111,6 +111,12 @@ The list below show all build time dependencies in alphabetical order. Note that
 * Run `mvn test` to run unit tests.
 * Run `mvn package` to create the JAR file.
 
+### Generate / update license file header
+
+```bash
+mvn license:update-file-header
+```
+
 ### Publishing to JCenter
 
 1. Add the following to your `~/.m2/settings.xml`:

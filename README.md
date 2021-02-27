@@ -150,8 +150,9 @@ mvn license:update-file-header
 1. Run command
 
     ```bash
-    mvn clean deploy
+    mvn -DskipSigningArtifacts=false clean deploy
     ```
-1. Merge to `master` branch
+
+1. Merge `develop` to `master` branch
 1. Create a [release](https://github.com/itsallcode/junit5-system-extensions/releases) of the `master` branch on GitHub.
 1. After some time the release will be available at [Maven Central](https://repo1.maven.org/maven2/org/itsallcode/junit5-system-extensions/).

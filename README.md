@@ -3,7 +3,6 @@
 This project provides a set of JUnit 5 extension that allow testing behavior related to functions related to `java.lang.System` (e.g. asserting exit status codes).
 
 [![Build](https://github.com/itsallcode/junit5-system-extensions/actions/workflows/build.yml/badge.svg)](https://github.com/itsallcode/junit5-system-extensions/actions/workflows/build.yml)
-[![Build Status](https://travis-ci.com/itsallcode/junit5-system-extensions.svg?branch=master)](https://travis-ci.com/itsallcode/junit5-system-extensions)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=org.itsallcode%3Ajunit5-system-extensions&metric=alert_status)](https://sonarcloud.io/dashboard?id=org.itsallcode%3Ajunit5-system-extensions)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=org.itsallcode%3Ajunit5-system-extensions&metric=coverage)](https://sonarcloud.io/dashboard?id=org.itsallcode%3Ajunit5-system-extensions)
 [![Maven Central](https://img.shields.io/maven-central/v/org.itsallcode/junit5-system-extensions)](https://search.maven.org/artifact/org.itsallcode/junit5-system-extensions)

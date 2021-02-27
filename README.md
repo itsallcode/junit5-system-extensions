@@ -122,13 +122,27 @@ mvn license:update-file-header
 1. Add the following to your `~/.m2/settings.xml`:
 
     ```xml
-    <servers>
-        <server>
-            <id>itsallcode-maven-repo</id>
-            <username>[bintray-username]</username>
-            <password>[bintray-api-key]</password>
-        </server>
-    </servers>
+    <settings>
+        <servers>
+            <server>
+                <id>ossrh</id>
+                <username>your-jira-id</username>
+                <password>your-jira-pwd</password>
+            </server>
+        </servers>
+        <profiles>
+            <profile>
+                <id>ossrh</id>
+                <activation>
+                    <activeByDefault>true</activeByDefault>
+                </activation>
+                <properties>
+                    <gpg.executable>gpg</gpg.executable>
+                    <gpg.passphrase>the_pass_phrase</gpg.passphrase>
+                </properties>
+            </profile>
+        </profiles>
+    </settings>
     ```
 
 1. Checkout the `develop` branch.
@@ -136,10 +150,8 @@ mvn license:update-file-header
 1. Run command
 
     ```bash
-    mvn deploy
+    mvn clean deploy
     ```
 1. Merge to `master` branch
 1. Create a [release](https://github.com/itsallcode/junit5-system-extensions/releases) of the `master` branch on GitHub.
-1. Sign in at [bintray.com](https://bintray.com)
-1. Go to the [Bintray project page](https://bintray.com/itsallcode/itsallcode/junit5-system-extensions)
-1. Publish to Maven Central by clicking the "Sync" button at https://bintray.com/itsallcode/itsallcode/junit5-system-extensions#central. After some time the new version will appear at https://repo1.maven.org/maven2/org/itsallcode/junit5-system-extensions/.
+1. After some time the release will be available at [Maven Central](https://repo1.maven.org/maven2/org/itsallcode/junit5-system-extensions/).

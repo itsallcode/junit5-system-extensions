@@ -41,6 +41,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <skipSigningArtifacts>true</skipSigningArtifacts>
     </properties>
+    <prerequisites>
+        <maven>3.6.3</maven>
+    </prerequisites>
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>

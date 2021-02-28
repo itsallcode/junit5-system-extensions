@@ -118,6 +118,27 @@ The list below show all build time dependencies in alphabetical order. Note that
 mvn license:update-file-header
 ```
 
+## Run local sonar analysis
+
+```bash
+mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar \
+    -Dsonar.host.url=https://sonarcloud.io \
+    -Dsonar.organization=itsallcode \
+    -Dsonar.login=[token]
+```
+
+See analysis results at https://sonarcloud.io/dashboard?id=org.itsallcode%3Aopenfasttrace-maven-plugin
+
+## Check for updated dependencies / plugins
+
+```bash
+mvn versions:display-dependency-updates
+```
+
+```bash
+mvn versions:display-plugin-updates
+```
+
 ### Publishing to JCenter
 
 1. Add the following to your `~/.m2/settings.xml`:

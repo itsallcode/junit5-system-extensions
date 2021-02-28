@@ -127,7 +127,7 @@ mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar \
     -Dsonar.login=[token]
 ```
 
-See analysis results at https://sonarcloud.io/dashboard?id=org.itsallcode%3Aopenfasttrace-maven-plugin
+See analysis results at https://sonarcloud.io/dashboard?id=org.itsallcode%3Ajunit5-system-extensions
 
 ## Check for updated dependencies / plugins
 

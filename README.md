@@ -23,7 +23,7 @@ The extensions in this project were inspired by a set of JUnit4 rules called "[S
 To trap and check calls to `System.exit(int)` follow these steps:
 
 1. Extend the test class with the class `ExitGuard`
-2. Use `AssertExit.assertExit(Runnable)` or `AssertExit.assertExit(int, Runnable)` to check for exit calls
+2. Use `AssertExit.assertExit(Runnable)` or `AssertExit.assertExitWithStatus(int, Runnable)` to check for exit calls
 
 Example:
 

@@ -95,7 +95,7 @@ Please check our [contribution guide](.github/CONTRIBUTING.md) to learn how you 
 
 ## Changelog
 
-[Changelog](doc/changes/changelog.mk)
+[Changelog](doc/changes/changelog.md)
 
 ## Development
 

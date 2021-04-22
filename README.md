@@ -139,7 +139,7 @@ mvn versions:display-dependency-updates
 mvn versions:display-plugin-updates
 ```
 
-### Publishing to JCenter
+### Publishing to MavenCentral
 
 1. Add the following to your `~/.m2/settings.xml`:
 

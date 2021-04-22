@@ -1,5 +1,3 @@
-package org.itsallcode.junit.sysextensions;
-
 /*-
  * #%L
  * JUnit5 System Extensions
@@ -19,6 +17,7 @@ package org.itsallcode.junit.sysextensions;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  * #L%
  */
+package org.itsallcode.junit.sysextensions;
 
 import static org.itsallcode.junit.sysextensions.AssertExit.assertExit;
 import static org.itsallcode.junit.sysextensions.AssertExit.assertExitWithStatus;

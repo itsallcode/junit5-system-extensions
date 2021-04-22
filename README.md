@@ -2,8 +2,9 @@
 
 This project provides a set of JUnit 5 extension that allow testing behavior related to functions related to `java.lang.System` (e.g. asserting exit status codes).
 
-[![Build Status](https://travis-ci.com/itsallcode/junit5-system-extensions.svg?branch=master)](https://travis-ci.com/itsallcode/junit5-system-extensions)
-[![Download](https://api.bintray.com/packages/itsallcode/itsallcode/junit5-system-extensions/images/download.svg)](https://bintray.com/itsallcode/itsallcode/junit5-system-extensions/_latestVersion)
+[![Build](https://github.com/itsallcode/junit5-system-extensions/actions/workflows/build.yml/badge.svg)](https://github.com/itsallcode/junit5-system-extensions/actions/workflows/build.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=org.itsallcode%3Ajunit5-system-extensions&metric=alert_status)](https://sonarcloud.io/dashboard?id=org.itsallcode%3Ajunit5-system-extensions)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=org.itsallcode%3Ajunit5-system-extensions&metric=coverage)](https://sonarcloud.io/dashboard?id=org.itsallcode%3Ajunit5-system-extensions)
 [![Maven Central](https://img.shields.io/maven-central/v/org.itsallcode/junit5-system-extensions)](https://search.maven.org/artifact/org.itsallcode/junit5-system-extensions)
 
 ## Acknowledgments
@@ -111,18 +112,59 @@ The list below show all build time dependencies in alphabetical order. Note that
 * Run `mvn test` to run unit tests.
 * Run `mvn package` to create the JAR file.
 
-### Publishing to JCenter
+### Generate / update license file header
+
+```bash
+mvn license:update-file-header
+```
+
+## Run local sonar analysis
+
+```bash
+mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar \
+    -Dsonar.host.url=https://sonarcloud.io \
+    -Dsonar.organization=itsallcode \
+    -Dsonar.login=[token]
+```
+
+See analysis results at https://sonarcloud.io/dashboard?id=org.itsallcode%3Ajunit5-system-extensions
+
+## Check for updated dependencies / plugins
+
+```bash
+mvn versions:display-dependency-updates
+```
+
+```bash
+mvn versions:display-plugin-updates
+```
+
+### Publishing to MavenCentral
 
 1. Add the following to your `~/.m2/settings.xml`:
 
     ```xml
-    <servers>
-        <server>
-            <id>itsallcode-maven-repo</id>
-            <username>[bintray-username]</username>
-            <password>[bintray-api-key]</password>
-        </server>
-    </servers>
+    <settings>
+        <servers>
+            <server>
+                <id>ossrh</id>
+                <username>your-jira-id</username>
+                <password>your-jira-pwd</password>
+            </server>
+        </servers>
+        <profiles>
+            <profile>
+                <id>ossrh</id>
+                <activation>
+                    <activeByDefault>true</activeByDefault>
+                </activation>
+                <properties>
+                    <gpg.executable>gpg</gpg.executable>
+                    <gpg.passphrase>the_pass_phrase</gpg.passphrase>
+                </properties>
+            </profile>
+        </profiles>
+    </settings>
     ```
 
 1. Checkout the `develop` branch.
@@ -130,10 +172,9 @@ The list below show all build time dependencies in alphabetical order. Note that
 1. Run command
 
     ```bash
-    mvn deploy
+    mvn -DskipSigningArtifacts=false clean deploy
     ```
-1. Merge to `master` branch
+
+1. Merge `develop` to `master` branch
 1. Create a [release](https://github.com/itsallcode/junit5-system-extensions/releases) of the `master` branch on GitHub.
-1. Sign in at [bintray.com](https://bintray.com)
-1. Go to the [Bintray project page](https://bintray.com/itsallcode/itsallcode/junit5-system-extensions)
-1. Publish to Maven Central by clicking the "Sync" button at https://bintray.com/itsallcode/itsallcode/junit5-system-extensions#central. After some time the new version will appear at https://repo1.maven.org/maven2/org/itsallcode/junit5-system-extensions/.
+1. After some time the release will be available at [Maven Central](https://repo1.maven.org/maven2/org/itsallcode/junit5-system-extensions/).

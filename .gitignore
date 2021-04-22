@@ -5,6 +5,4 @@
 **/*.out
 /target
 /bin
-
-/bin
-
+/.settings/org.eclipse.jdt.apt.core.prefs

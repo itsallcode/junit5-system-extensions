@@ -44,7 +44,7 @@ jobs:
         MAVEN_OPTS: "-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
     - name: Publish Test Report
       uses: scacap/action-surefire-report@v1
-      if: always()
+      if: ${{ always() && github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]' }}
       with:
         report_paths: '**/target/surefire-reports/TEST-*.xml'
         github_token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,4 +1,4 @@
-# JUnit5 System Extensions 1.2.0, released 2019-04-22
+# JUnit5 System Extensions 1.2.0, released 2021-04-26
 
 Code name: Mute output
 

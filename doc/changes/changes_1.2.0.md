@@ -10,8 +10,8 @@ This way applications that require a security manager don't change their behavio
 
 ## Features
 
-* #23: Delegate security manager calls to the original security manager
+* [#23](https://github.com/itsallcode/junit5-system-extensions/issues/23): Delegate security manager calls to the original security manager
 
 ## Refactoring
 
-* #21: Migrate to Maven Central
+* [#21](https://github.com/itsallcode/junit5-system-extensions/issues/21): Migrate to Maven Central

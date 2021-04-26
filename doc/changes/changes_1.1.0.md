@@ -4,8 +4,8 @@ Code name: Mute output
 
 ## Summary
 
-To mute the output (i.e. don't forward output to System.out / System.err) call stream.captureMuted() instead of stream.capture(). This can be useful to speed up unit tests.
+To mute the output (i.e. don't forward output to `System.out` / `System.err`) call `stream.captureMuted()` instead of `stream.capture()`. This can be useful to speed up unit tests.
 
 ## Features
 
-* #16: Mute output of captured streams
+* [#16](https://github.com/itsallcode/junit5-system-extensions/issues/16): Mute output of captured streams

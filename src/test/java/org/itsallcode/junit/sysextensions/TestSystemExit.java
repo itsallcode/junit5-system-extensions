@@ -1,5 +1,3 @@
-package org.itsallcode.junit.sysextensions;
-
 /*-
  * #%L
  * JUnit5 System Extensions
@@ -9,16 +7,17 @@ package org.itsallcode.junit.sysextensions;
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0.
- * 
+ *
  * This Source Code may also be made available under the following Secondary
  * Licenses when the conditions for such availability set forth in the Eclipse
  * Public License, v. 2.0 are satisfied: GNU General Public License, version 2
  * with the GNU Classpath Exception which is
  * available at https://www.gnu.org/software/classpath/license.html.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  * #L%
  */
+package org.itsallcode.junit.sysextensions;
 
 import static org.itsallcode.junit.sysextensions.AssertExit.assertExit;
 import static org.itsallcode.junit.sysextensions.AssertExit.assertExitWithStatus;
@@ -45,7 +44,8 @@ class TestSystemExit
             assertExit(() -> {
                 // intentionally empty
             });
-        } catch (final AssertionError assertionError)
+        }
+        catch (final AssertionError assertionError)
         {
             assertMissingExitMessage(assertionError);
             return;
@@ -70,7 +70,8 @@ class TestSystemExit
         try
         {
             assertExitWithStatus(0, () -> System.exit(1));
-        } catch (final AssertionError assertionError)
+        }
+        catch (final AssertionError assertionError)
         {
             return;
         }
@@ -85,7 +86,8 @@ class TestSystemExit
             assertExitWithStatus(0, () -> {
                 // intentionally empty
             });
-        } catch (final AssertionError assertionError)
+        }
+        catch (final AssertionError assertionError)
         {
             assertMissingExitMessage(assertionError);
             return;

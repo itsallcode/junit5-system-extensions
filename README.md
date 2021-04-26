@@ -46,7 +46,9 @@ class TestSystemExit
 }
 ```
 
-Note that in order to be able to trap system exit, the `ExitGuard` temporarily replaces the existing security manager (if any).
+The `ExitGuard` temporarily replaces the existing security manager.
+
+From version 1.2.0 on if a security guard existed before, it serves as a delegate for all security checks with the exception of the `checkExit`.
 
 ## Asserting Data Sent to `System.out`
 
@@ -90,6 +92,10 @@ Capturing data sent to `System.err` works in the exact same way as in the [`Syst
 ## Contributing, Feature Requests and Error Reporting
 
 Please check our [contribution guide](.github/CONTRIBUTING.md) to learn how you can help with the project, report errors or request features.
+
+## Changelog
+
+[Changelog](doc/changes/changelog.md)
 
 ## Development
 

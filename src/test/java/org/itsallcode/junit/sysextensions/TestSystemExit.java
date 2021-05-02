@@ -55,7 +55,7 @@ class TestSystemExit
 
     private void assertMissingExitMessage(final AssertionError assertionError)
     {
-        assertEquals(assertionError.getMessage(), "Lambda did not cause a system exit as expected.");
+        assertEquals("Lambda did not cause a system exit as expected.", assertionError.getMessage());
     }
 
     @Test

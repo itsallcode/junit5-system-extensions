@@ -51,7 +51,7 @@ public class SystemOutGuard extends AbstractSystemOutputGuard
         return NAMESPACE;
     }
 
-    @SuppressWarnings("java:S106")
+    @SuppressWarnings("java:S106") // System.err used intentionally
     @Override
     protected PrintStream getSystemStream()
     {

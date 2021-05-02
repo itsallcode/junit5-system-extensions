@@ -8,6 +8,10 @@ When trapping `System.exit` calls, the `ExitGuardSecurityManager` now doesn't si
 
 This way applications that require a security manager don't change their behavior.
 
+## Breaking change
+
+* `junit5-system-extensions` requires Java 11 to compile and at runtime.
+
 ## Features
 
 * [#23](https://github.com/itsallcode/junit5-system-extensions/issues/23): Delegate security manager calls to the original security manager

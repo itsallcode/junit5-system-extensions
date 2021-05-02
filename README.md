@@ -13,6 +13,8 @@ The extensions in this project were inspired by a set of JUnit4 rules called "[S
 
 ## Runtime Dependencies
 
+Starting with version 1.2.0 `junit5-system-extensions` requires Java 11 to compile and at runtime. If your project requires Java 8, please use version 1.1.0.
+
 | Dependency                                                                   | Purpose                                                | License                       |
 -------------------------------------------------------------------------------|--------------------------------------------------------|--------------------------------
 | [JUnit5](https://junit.org/junit5/)                                          | Unit test framework                                    | Eclipse Public License v2.0   |

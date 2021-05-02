@@ -175,7 +175,7 @@ mvn versions:display-plugin-updates
     </settings>
     ```
 
-1. Checkout the `develop` branch.
+1. Checkout the `main` branch.
 1. Update version in `pom.xml`, commit and push.
 1. Run command
 
@@ -183,6 +183,5 @@ mvn versions:display-plugin-updates
     mvn -DskipSigningArtifacts=false clean deploy
     ```
 
-1. Merge `develop` to `master` branch
-1. Create a [release](https://github.com/itsallcode/junit5-system-extensions/releases) of the `master` branch on GitHub.
+1. Create a [release](https://github.com/itsallcode/junit5-system-extensions/releases) of the `main` branch on GitHub.
 1. After some time the release will be available at [Maven Central](https://repo1.maven.org/maven2/org/itsallcode/junit5-system-extensions/).

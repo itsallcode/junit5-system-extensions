@@ -1,10 +1,11 @@
 name: Build with next Java version
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+# Build fails currently. See https://github.com/itsallcode/junit5-system-extensions/issues/68
+#on:
+#  push:
+#    branches: [ main ]
+#  pull_request:
+#    branches: [ main ]
 
 jobs:
   build-next-java:

@@ -36,8 +36,8 @@
     </scm>
     <properties>
         <java.version>11</java.version>
-        <junit.version>5.8.2</junit.version>
-        <junit.platform.version>1.8.2</junit.platform.version>
+        <junit.version>5.9.0</junit.version>
+        <junit.platform.version>1.9.0</junit.platform.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <skipSigningArtifacts>true</skipSigningArtifacts>
     </properties>
@@ -75,7 +75,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>4.5.1</version>
+            <version>4.7.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -106,7 +106,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.4.0</version>
+                <version>3.4.1</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -148,7 +148,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>3.0.0-M7</version>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -157,7 +157,7 @@
                 <configuration>
                     <verbose>false</verbose>
                     <detail>true</detail>
-                    <licenseName>epl_v2</licenseName><!-- same license as JUnit5 -->
+                    <licenseName>epl_v2</licenseName> <!-- same license as JUnit5 -->
                     <licenseResolver>${project.baseUri}/src/license</licenseResolver>
                     <organizationName>itsallcode.org</organizationName>
                     <inceptionYear>2018</inceptionYear>
@@ -216,7 +216,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.8.2</version>
+                <version>3.0.0</version>
             </plugin>
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
@@ -228,6 +228,40 @@
                     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>enforce-maven</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>3.6.3</version>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>io.github.zlika</groupId>
+                <artifactId>reproducible-build-maven-plugin</artifactId>
+                <version>0.15</version>
+                <executions>
+                    <execution>
+                        <id>strip-jar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>strip-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

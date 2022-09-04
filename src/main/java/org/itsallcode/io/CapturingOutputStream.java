@@ -1,25 +1,5 @@
 package org.itsallcode.io;
 
-/*-
- * #%L
- * JUnit5 System Extensions
- * %%
- * Copyright (C) 2018 itsallcode.org
- * %%
- * This program and the accompanying materials are made available under the
- * terms of the Eclipse Public License 2.0 which is available at
- * http://www.eclipse.org/legal/epl-2.0.
- * 
- * This Source Code may also be made available under the following Secondary
- * Licenses when the conditions for such availability set forth in the Eclipse
- * Public License, v. 2.0 are satisfied: GNU General Public License, version 2
- * with the GNU Classpath Exception which is
- * available at https://www.gnu.org/software/classpath/license.html.
- * 
- * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
- * #L%
- */
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -86,7 +66,8 @@ public class CapturingOutputStream extends OutputStream implements Capturable
         }
         this.internalStream = null;
         this.targetStream = null;
-        // closing the targetStream is the responsibility of the class which opened it.
+        // closing the targetStream is the responsibility of the class which
+        // opened it.
         super.close();
     }
 
@@ -109,7 +90,8 @@ public class CapturingOutputStream extends OutputStream implements Capturable
         if (this.internalStream == null)
         {
             return getDataFromCaptureBuffer();
-        } else
+        }
+        else
         {
             return this.internalStream.toString();
         }

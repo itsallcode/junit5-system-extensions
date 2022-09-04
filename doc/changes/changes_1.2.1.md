@@ -13,6 +13,7 @@ Version 1.2.1 is a service release that fixed SONAR code smells.
 ## Refactoring
 
 * [PR #67](https://github.com/itsallcode/junit5-system-extensions/pull/66): Upgrade dependencies
+* [PR #69](https://github.com/itsallcode/junit5-system-extensions/pull/69): Remove license header from sources
 
 ## Development process
 

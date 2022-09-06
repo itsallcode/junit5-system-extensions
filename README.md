@@ -120,12 +120,6 @@ The list below show all build time dependencies in alphabetical order. Note that
 * Run `mvn test` to run unit tests.
 * Run `mvn package` to create the JAR file.
 
-### Generate / update license file header
-
-```bash
-mvn license:update-file-header
-```
-
 ## Run local sonar analysis
 
 ```bash
@@ -140,11 +134,7 @@ See analysis results at https://sonarcloud.io/dashboard?id=org.itsallcode%3Ajuni
 ## Check for updated dependencies / plugins
 
 ```bash
-mvn versions:display-dependency-updates
-```
-
-```bash
-mvn versions:display-plugin-updates
+mvn --update-snapshots versions:display-dependency-updates versions:display-plugin-updates
 ```
 
 ### Publishing to MavenCentral

@@ -124,9 +124,7 @@ The list below show all build time dependencies in alphabetical order. Note that
 
 ```bash
 mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar \
-    -Dsonar.host.url=https://sonarcloud.io \
-    -Dsonar.organization=itsallcode \
-    -Dsonar.login=[token]
+    -Dsonar.token=[token]
 ```
 
 See analysis results at https://sonarcloud.io/dashboard?id=org.itsallcode%3Ajunit5-system-extensions

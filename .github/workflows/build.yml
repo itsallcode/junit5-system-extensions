@@ -41,7 +41,7 @@ jobs:
     - name: Build with Maven
       run: mvn --errors --batch-mode clean install -Djava.version=${{ matrix.java }}
     - name: Sonar analysis
-      if: ${{ env.SONAR_TOKEN != null }}
+      if: ${{ env.DEFAULT_JAVA == matrix.java && env.SONAR_TOKEN != null }}
       run: mvn --errors --batch-mode -Dsonar.token=$SONAR_TOKEN org.jacoco:jacoco-maven-plugin:prepare-agent sonar:sonar -Djava.version=${{ matrix.java }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

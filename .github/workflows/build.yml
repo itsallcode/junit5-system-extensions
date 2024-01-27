@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        java: [11, 17, 21]
+        java: [11] # 17 & 21 removed because of https://github.com/itsallcode/junit5-system-extensions/issues/68
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-java-${{ matrix.java }}
       cancel-in-progress: true

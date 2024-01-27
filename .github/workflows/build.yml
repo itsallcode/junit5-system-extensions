@@ -38,7 +38,7 @@ jobs:
         path: ~/.sonar/cache
         key: ${{ runner.os }}-sonar
         restore-keys: ${{ runner.os }}-sonar
-    - name: Build with Maven
+    - name: Build with Java ${{ matrix.java }}
       run: mvn --errors --batch-mode clean install -Djava.version=${{ matrix.java }}
     - name: Sonar analysis
       if: ${{ env.DEFAULT_JAVA == matrix.java && env.SONAR_TOKEN != null }}

@@ -1,4 +1,4 @@
-# JUnit5 System Extensions 1.2.1, released 2022-09-??
+# JUnit5 System Extensions 1.2.1, released 2024-07-07
 
 Code name: Sonar smell fixes for 1.2.0
 
@@ -14,6 +14,7 @@ Version 1.2.1 is a service release that fixed SONAR code smells and adds tests w
 
 * [PR #67](https://github.com/itsallcode/junit5-system-extensions/pull/66): Upgrade dependencies
 * [PR #69](https://github.com/itsallcode/junit5-system-extensions/pull/69): Remove license header from sources
+* [PR #72](https://github.com/itsallcode/junit5-system-extensions/pull/72): Adapt to Java 17 and 21, add JavaDoc
 
 ## Development process
 

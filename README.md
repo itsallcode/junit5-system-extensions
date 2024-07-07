@@ -145,40 +145,17 @@ mvn --update-snapshots versions:display-dependency-updates versions:display-plug
 ```
 
 ### Publishing to MavenCentral
-
-1. Add the following to your `~/.m2/settings.xml`:
-
-    ```xml
-    <settings>
-        <servers>
-            <server>
-                <id>ossrh</id>
-                <username>your-jira-id</username>
-                <password>your-jira-pwd</password>
-            </server>
-        </servers>
-        <profiles>
-            <profile>
-                <id>ossrh</id>
-                <activation>
-                    <activeByDefault>true</activeByDefault>
-                </activation>
-                <properties>
-                    <gpg.executable>gpg</gpg.executable>
-                    <gpg.passphrase>the_pass_phrase</gpg.passphrase>
-                </properties>
-            </profile>
-        </profiles>
-    </settings>
-    ```
+#### Prepare the Release
 
 1. Checkout the `main` branch.
-1. Update version in `pom.xml`, commit and push.
-1. Run command
+2. Update version in `pom.xml` and changelog.
+3. Commit and push changes.
+4. Create a new pull request, have it reviewed and merged to `main`.
 
-    ```bash
-    mvn -DskipSigningArtifacts=false clean deploy
-    ```
+### Perform the Release
 
-1. Create a [release](https://github.com/itsallcode/junit5-system-extensions/releases) of the `main` branch on GitHub.
-1. After some time the release will be available at [Maven Central](https://repo1.maven.org/maven2/org/itsallcode/junit5-system-extensions/).
+1. Start the release workflow
+  * Run command `gh workflow run release.yml --repo itsallcode/junit5-system-extensions --ref main`
+  * or go to [GitHub Actions](https://github.com/itsallcode/junit5-system-extensions/actions/workflows/release.yml) and start the `release.yml` workflow on branch `main`.
+2. Update title and description of the newly created [GitHub release](https://github.com/itsallcode/junit5-system-extensions/releases).
+3. After some time the release will be available at [Maven Central](https://repo1.maven.org/maven2/org/itsallcode/junit5-system-extensions/).

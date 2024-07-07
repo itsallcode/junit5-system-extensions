@@ -10,7 +10,7 @@ import java.security.Permission;
  */
 public class ExitGuardSecurityManager extends SecurityManager
 {
-    private boolean trapExit = false;
+    private boolean trapExit;
     private final SecurityManager delegate;
 
     /**

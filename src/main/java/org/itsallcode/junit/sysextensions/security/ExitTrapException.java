@@ -6,6 +6,7 @@ package org.itsallcode.junit.sysextensions.security;
  */
 public class ExitTrapException extends SecurityException
 {
+    @SuppressWarnings("java:S4926") // serialVersionUID used intentionally
     private static final long serialVersionUID = 3483205912039194022L;
 
     /**

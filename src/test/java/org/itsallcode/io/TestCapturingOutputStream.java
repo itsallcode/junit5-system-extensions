@@ -3,7 +3,12 @@ package org.itsallcode.io;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-import java.io.*;ream
+import java.io.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+class TestCapturingOutputStream
 {
     private static final byte[] CONTENT = "content".getBytes();
     private OutputStream delegate;

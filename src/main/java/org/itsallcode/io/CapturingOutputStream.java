@@ -1,10 +1,12 @@
 package org.itsallcode.io;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.Objects;
 
+/**
+ * This {@link OutputStream} captures the output written to it and makes it
+ * available as a string.
+ */
 public class CapturingOutputStream extends OutputStream implements Capturable
 {
     private OutputStream targetStream = null;
@@ -12,6 +14,12 @@ public class CapturingOutputStream extends OutputStream implements Capturable
     private String captureBuffer = null;
     private boolean forwardOutputToTarget = true;
 
+    /**
+     * Creates a new instance of this class.
+     * 
+     * @param targetStream
+     *            the stream to which the output should be forwarded.
+     */
     public CapturingOutputStream(final OutputStream targetStream)
     {
         this.targetStream = Objects.requireNonNull(targetStream, "targetStream");

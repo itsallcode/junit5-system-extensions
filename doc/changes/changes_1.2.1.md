@@ -4,7 +4,7 @@ Code name: Sonar smell fixes for 1.2.0
 
 ## Summary
 
-Version 1.2.1 is a service release that fixed SONAR code smells.
+Version 1.2.1 is a service release that fixed SONAR code smells and adds tests with Java 17 and Java 21.
 
 ## Bugfixes
 

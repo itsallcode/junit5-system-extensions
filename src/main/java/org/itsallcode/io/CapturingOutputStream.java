@@ -1,6 +1,7 @@
 package org.itsallcode.io;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 /**
@@ -9,9 +10,9 @@ import java.util.Objects;
  */
 public class CapturingOutputStream extends OutputStream implements Capturable
 {
-    private OutputStream targetStream = null;
-    private ByteArrayOutputStream internalStream = null;
-    private String captureBuffer = null;
+    private OutputStream targetStream;
+    private ByteArrayOutputStream internalStream;
+    private String captureBuffer;
     private boolean forwardOutputToTarget = true;
 
     /**
@@ -69,7 +70,7 @@ public class CapturingOutputStream extends OutputStream implements Capturable
     {
         if (this.internalStream != null)
         {
-            this.captureBuffer = this.internalStream.toString();
+            this.captureBuffer = this.internalStream.toString(StandardCharsets.UTF_8);
             this.internalStream.close();
         }
         this.internalStream = null;
@@ -101,7 +102,7 @@ public class CapturingOutputStream extends OutputStream implements Capturable
         }
         else
         {
-            return this.internalStream.toString();
+            return this.internalStream.toString(StandardCharsets.UTF_8);
         }
     }
 

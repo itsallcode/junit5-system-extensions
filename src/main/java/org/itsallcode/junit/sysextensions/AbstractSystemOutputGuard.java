@@ -4,6 +4,7 @@ import java.io.*;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Executable;
 import java.lang.reflect.Parameter;
+import java.nio.charset.StandardCharsets;
 
 import org.itsallcode.io.Capturable;
 import org.itsallcode.io.CapturingOutputStream;
@@ -67,7 +68,8 @@ public abstract class AbstractSystemOutputGuard implements BeforeEachCallback, P
     {
         final CapturingOutputStream capturingStream = new CapturingOutputStream(getSystemStream());
         context.getStore(getNamespace()).put(CAPTURING_OUTPUT_STREAM_KEY, capturingStream);
-        final PrintStream printStream = new PrintStream(getCapturingOutputStream(context));
+        final PrintStream printStream = new PrintStream(getCapturingOutputStream(context), false,
+                StandardCharsets.UTF_8);
         setSystemStream(printStream);
     }
 

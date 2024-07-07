@@ -18,3 +18,7 @@ Version 1.2.1 is a service release that fixed SONAR code smells and adds tests w
 ## Development process
 
 * The `develop` branch was renamed to `main`, `master` was deleted.
+
+## Deprecation Warning
+
+The JREs Security Manager used by `ExitGuard` is deprecated and is not supported by Java 21 and later.

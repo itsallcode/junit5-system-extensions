@@ -52,6 +52,8 @@ The `ExitGuard` temporarily replaces the existing security manager.
 
 From version 1.2.0 on if a security guard existed before, it serves as a delegate for all security checks with the exception of the `checkExit`.
 
+**Warning:** The JREs Security Manager used by `ExitGuard` is deprecated and is not supported by Java 21 and later.
+
 ## Asserting Data Sent to `System.out`
 
 To capture data sent to `System.out`, follow these steps:

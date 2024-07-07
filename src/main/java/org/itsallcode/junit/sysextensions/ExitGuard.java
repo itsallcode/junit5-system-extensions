@@ -6,7 +6,11 @@ import org.junit.jupiter.api.extension.ExtensionContext.Namespace;
 
 /**
  * JUnit 5 extension that guards calls to {@link System#exit(int)}.
+ * 
+ * @deprecated Class {@link SecurityManager} used by ExitGuard is deprecated and
+ *             does not work with JRE 21 and later.
  */
+@Deprecated(since = "1.2.1", forRemoval = true)
 public final class ExitGuard
         implements TestInstancePostProcessor, BeforeTestExecutionCallback, AfterTestExecutionCallback, AfterAllCallback
 {
@@ -28,12 +32,12 @@ public final class ExitGuard
         installExitGuardSecurityManager(context);
     }
 
-    private void saveCurrentSecurityManager(final ExtensionContext context)
+    private static void saveCurrentSecurityManager(final ExtensionContext context)
     {
         context.getStore(getNamespace()).put(PREVIOUS_SECURITY_MANAGER_KEY, System.getSecurityManager());
     }
 
-    private void installExitGuardSecurityManager(final ExtensionContext context)
+    private static void installExitGuardSecurityManager(final ExtensionContext context)
     {
         final SecurityManager previousSecurityManager = getPreviousSecurityManager(context);
         final SecurityManager exitGuardSecurityManager = new ExitGuardSecurityManager(previousSecurityManager);

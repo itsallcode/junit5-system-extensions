@@ -1,51 +1,52 @@
 
 package org.itsallcode.junit.sysextensions;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.itsallcode.junit.sysextensions.security.ExitGuardSecurityManager;
 import org.itsallcode.junit.sysextensions.security.ExitTrapException;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledOnJre;
+import org.junit.jupiter.api.condition.JRE;
 
+@DisabledOnJre(value = {
+        JRE.JAVA_21 }, disabledReason = "The Security Manager is deprecated and will be removed in a future release")
 class TestSystemExitReplacingExistingSecurityManager
 {
     @Test
     void testFirstSystemExitIntercepted()
     {
-        final SecurityManager previousSecuritymanager = System.getSecurityManager();
+        final SecurityManager previousSecurityManager = System.getSecurityManager();
         try
         {
             final SecurityManagerStub securityManagerStub = new SecurityManagerStub();
-            final ExitGuardSecurityManager exitGuardsecurityManager = new ExitGuardSecurityManager(securityManagerStub);
-            System.setSecurityManager(exitGuardsecurityManager);
-            exitGuardsecurityManager.trapExit(true);
+            final ExitGuardSecurityManager exitGuardSecurityManager = new ExitGuardSecurityManager(securityManagerStub);
+            System.setSecurityManager(exitGuardSecurityManager);
+            exitGuardSecurityManager.trapExit(true);
             assertAll(() -> assertThrows(ExitTrapException.class, () -> System.exit(1)),
                     () -> assertFalse(securityManagerStub.wasCheckExitCalled(), "Delegate exit called"));
         }
         finally
         {
-            System.setSecurityManager(previousSecuritymanager);
+            System.setSecurityManager(previousSecurityManager);
         }
     }
 
     @Test
     void testSecurityCheckGetsDelegated()
     {
-        final SecurityManager previousSecuritymanager = System.getSecurityManager();
+        final SecurityManager previousSecurityManager = System.getSecurityManager();
         try
         {
             final SecurityManagerStub securityManagerStub = new SecurityManagerStub();
-            final ExitGuardSecurityManager exitGuardsecurityManager = new ExitGuardSecurityManager(securityManagerStub);
-            System.setSecurityManager(exitGuardsecurityManager);
+            final ExitGuardSecurityManager exitGuardSecurityManager = new ExitGuardSecurityManager(securityManagerStub);
+            System.setSecurityManager(exitGuardSecurityManager);
             System.getProperty("any-property");
             assertTrue(securityManagerStub.wasCheckPropertyAccessCalled());
         }
         finally
         {
-            System.setSecurityManager(previousSecuritymanager);
+            System.setSecurityManager(previousSecurityManager);
         }
     }
 

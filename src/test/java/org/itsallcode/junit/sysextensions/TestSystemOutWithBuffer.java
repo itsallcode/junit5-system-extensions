@@ -6,18 +6,12 @@ import java.io.IOException;
 import java.io.PrintStream;
 
 import org.itsallcode.io.Capturable;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 @ExtendWith(SystemOutGuard.class)
-class TestSytemOutWithBuffer
+class TestSystemOutWithBuffer
 {
-    @BeforeEach
-    void beforeEach()
-    {
-    }
-
     @SuppressWarnings("squid:S2699")
     @Test
     void testGetCapturedRegular(final Capturable stream) throws IOException
@@ -27,7 +21,7 @@ class TestSytemOutWithBuffer
     }
 
     @Test
-    void testGetCapturedDataWithPrintStreamAroundSystemOut(final Capturable stream) throws IOException
+    void testGetCapturedDataWithPrintStreamAroundSystemOut(final Capturable stream)
     {
         final PrintStream printStream = new PrintStream(System.out);
         stream.capture();

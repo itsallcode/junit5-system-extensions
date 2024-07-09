@@ -3,10 +3,17 @@ package org.itsallcode.junit.sysextensions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.util.logging.Logger;
+
 import org.itsallcode.junit.sysextensions.security.ExitTrapException;
 
+/**
+ * Utility class to assert that a lambda expression calls
+ * {@link System#exit(int)}.
+ */
 public final class AssertExit
 {
+    private static final Logger LOGGER = Logger.getLogger(AssertExit.class.getName());
     private AssertExit()
     {
         // prevent instantiation
@@ -25,8 +32,10 @@ public final class AssertExit
         {
             runnable.run();
         }
-        catch (final ExitTrapException e)
+        catch (final ExitTrapException exception)
         {
+            LOGGER.fine(
+                    () -> "Caught ExitTrapException " + exception + " with exit status " + exception.getExitStatus());
             return;
         }
         failMissingExit();
@@ -53,9 +62,11 @@ public final class AssertExit
         {
             runnable.run();
         }
-        catch (final ExitTrapException e)
+        catch (final ExitTrapException exception)
         {
-            assertEquals(expectedExitCode, e.getExitStatus(), "Expected exit status code");
+            LOGGER.fine(
+                    () -> "Caught ExitTrapException " + exception + " with exit status " + exception.getExitStatus());
+            assertEquals(expectedExitCode, exception.getExitStatus(), "Expected exit status code");
             return;
         }
         failMissingExit();

@@ -1,17 +1,26 @@
 package org.itsallcode.io;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
+/**
+ * This {@link OutputStream} captures the output written to it and makes it
+ * available as a string.
+ */
 public class CapturingOutputStream extends OutputStream implements Capturable
 {
-    private OutputStream targetStream = null;
-    private ByteArrayOutputStream internalStream = null;
-    private String captureBuffer = null;
+    private OutputStream targetStream;
+    private ByteArrayOutputStream internalStream;
+    private String captureBuffer;
     private boolean forwardOutputToTarget = true;
 
+    /**
+     * Creates a new instance of this class.
+     * 
+     * @param targetStream
+     *            the stream to which the output should be forwarded.
+     */
     public CapturingOutputStream(final OutputStream targetStream)
     {
         this.targetStream = Objects.requireNonNull(targetStream, "targetStream");
@@ -61,7 +70,7 @@ public class CapturingOutputStream extends OutputStream implements Capturable
     {
         if (this.internalStream != null)
         {
-            this.captureBuffer = this.internalStream.toString();
+            this.captureBuffer = this.internalStream.toString(StandardCharsets.UTF_8);
             this.internalStream.close();
         }
         this.internalStream = null;
@@ -93,7 +102,7 @@ public class CapturingOutputStream extends OutputStream implements Capturable
         }
         else
         {
-            return this.internalStream.toString();
+            return this.internalStream.toString(StandardCharsets.UTF_8);
         }
     }
 

@@ -7,8 +7,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledOnJre;
+import org.junit.jupiter.api.condition.JRE;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+@DisabledOnJre(value = {
+        JRE.JAVA_21 }, disabledReason = "The Security Manager is deprecated and will be removed in a future release")
 @ExtendWith(ExitGuard.class)
 class TestSystemExit
 {

@@ -4,11 +4,21 @@ import java.io.FileDescriptor;
 import java.net.InetAddress;
 import java.security.Permission;
 
+/**
+ * This security manager traps calls to {@link System#exit(int)} and throws an
+ * {@link ExitTrapException} instead.
+ */
 public class ExitGuardSecurityManager extends SecurityManager
 {
-    private boolean trapExit = false;
+    private boolean trapExit;
     private final SecurityManager delegate;
 
+    /**
+     * Creates a new instance of this class.
+     * 
+     * @param delegate
+     *            the delegate security manager
+     */
     public ExitGuardSecurityManager(final SecurityManager delegate)
     {
         this.delegate = delegate;

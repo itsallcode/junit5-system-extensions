@@ -1,18 +1,29 @@
 package org.itsallcode.junit.sysextensions;
 
 import org.itsallcode.junit.sysextensions.security.ExitGuardSecurityManager;
-import org.junit.jupiter.api.extension.AfterAllCallback;
-import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
-import org.junit.jupiter.api.extension.BeforeTestExecutionCallback;
-import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.*;
 import org.junit.jupiter.api.extension.ExtensionContext.Namespace;
-import org.junit.jupiter.api.extension.TestInstancePostProcessor;
 
+/**
+ * JUnit 5 extension that guards calls to {@link System#exit(int)}.
+ * 
+ * @deprecated Class {@link SecurityManager} used by ExitGuard is deprecated and
+ *             does not work with JRE 21 and later.
+ */
+@Deprecated(since = "1.2.1", forRemoval = true)
 public final class ExitGuard
         implements TestInstancePostProcessor, BeforeTestExecutionCallback, AfterTestExecutionCallback, AfterAllCallback
 {
     private static final String PREVIOUS_SECURITY_MANAGER_KEY = "PREV_SECMAN";
     private static final String EXIT_GUARD_SECURITY_MANAGER_KEY = "EXIT_SECMAN";
+
+    /**
+     * Creates a new instance of this class.
+     */
+    public ExitGuard()
+    {
+        // Default constructor
+    }
 
     @Override
     public void postProcessTestInstance(final Object testInstance, final ExtensionContext context)
@@ -21,12 +32,12 @@ public final class ExitGuard
         installExitGuardSecurityManager(context);
     }
 
-    private void saveCurrentSecurityManager(final ExtensionContext context)
+    private static void saveCurrentSecurityManager(final ExtensionContext context)
     {
         context.getStore(getNamespace()).put(PREVIOUS_SECURITY_MANAGER_KEY, System.getSecurityManager());
     }
 
-    private void installExitGuardSecurityManager(final ExtensionContext context)
+    private static void installExitGuardSecurityManager(final ExtensionContext context)
     {
         final SecurityManager previousSecurityManager = getPreviousSecurityManager(context);
         final SecurityManager exitGuardSecurityManager = new ExitGuardSecurityManager(previousSecurityManager);
@@ -34,12 +45,12 @@ public final class ExitGuard
         context.getStore(getNamespace()).put(EXIT_GUARD_SECURITY_MANAGER_KEY, exitGuardSecurityManager);
     }
 
-    private Namespace getNamespace()
+    private static Namespace getNamespace()
     {
         return Namespace.create(ExitGuard.class);
     }
 
-    private ExitGuardSecurityManager getExitGuardSecurityManager(final ExtensionContext context)
+    private static ExitGuardSecurityManager getExitGuardSecurityManager(final ExtensionContext context)
     {
         return (ExitGuardSecurityManager) context.getStore(getNamespace()).get(EXIT_GUARD_SECURITY_MANAGER_KEY);
     }
@@ -63,7 +74,7 @@ public final class ExitGuard
         System.setSecurityManager(previousManager);
     }
 
-    private SecurityManager getPreviousSecurityManager(final ExtensionContext context)
+    private static SecurityManager getPreviousSecurityManager(final ExtensionContext context)
     {
         return (SecurityManager) context.getStore(getNamespace())
                 .get(PREVIOUS_SECURITY_MANAGER_KEY);

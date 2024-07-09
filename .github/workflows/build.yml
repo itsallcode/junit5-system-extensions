@@ -9,10 +9,12 @@ on:
 jobs:
   matrix-build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       fail-fast: true
       matrix:
-        java: [11] # 17 & 21 removed because of https://github.com/itsallcode/junit5-system-extensions/issues/68
+        java: [11, 17, 21]
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-java-${{ matrix.java }}
       cancel-in-progress: true
@@ -46,12 +48,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-    - name: Publish Test Report
-      uses: scacap/action-surefire-report@v1
-      if: ${{ always() && github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]' }}
-      with:
-        report_paths: '**/target/surefire-reports/TEST-*.xml'
-        github_token: ${{ secrets.GITHUB_TOKEN }}
 
   build:
     needs: matrix-build

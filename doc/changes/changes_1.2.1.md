@@ -1,4 +1,4 @@
-# JUnit5 System Extensions 1.2.1, released 2024-07-07
+# JUnit5 System Extensions 1.2.1, released 2024-07-09
 
 Code name: Sonar smell fixes for 1.2.0
 

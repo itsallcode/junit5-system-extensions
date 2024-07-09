@@ -21,9 +21,9 @@ public class ExitTrapException extends SecurityException
      * exit.
      * 
      * @param message
-     *            the message
+     *            exit message
      * @param status
-     *            the exit status code
+     *            exit status code
      */
     public ExitTrapException(final String message, final int status)
     {

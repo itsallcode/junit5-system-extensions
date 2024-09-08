@@ -36,7 +36,7 @@
     </scm>
     <properties>
         <java.version>11</java.version>
-        <junit.version>5.10.3</junit.version>
+        <junit.version>5.11.0</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <skipSigningArtifacts>true</skipSigningArtifacts>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -67,7 +67,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>5.12.0</version>
+            <version>5.13.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -161,7 +161,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>3.10.0</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -204,7 +204,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.5.0</version>
                 <configuration>
                     <!-- Suppress warning about loading byte-buddy-agent -->
                     <argLine>-XX:+EnableDynamicAgentLoading ${argLine}</argLine>
@@ -233,7 +233,7 @@
             <plugin>
                 <groupId>io.github.zlika</groupId>
                 <artifactId>reproducible-build-maven-plugin</artifactId>
-                <version>0.16</version>
+                <version>0.17</version>
                 <executions>
                     <execution>
                         <id>strip-jar</id>

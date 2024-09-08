@@ -41,6 +41,8 @@
         <skipSigningArtifacts>true</skipSigningArtifacts>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.organization>itsallcode</sonar.organization>
+        <reproducible.build.timestamp>${git.commit.time}</reproducible.build.timestamp>
+        <project.build.outputTimestamp>${reproducible.build.timestamp}</project.build.outputTimestamp>
     </properties>
     <distributionManagement>
         <snapshotRepository>
@@ -183,6 +185,11 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.2</version>
+            </plugin>
+            <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.12</version>
@@ -231,18 +238,42 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>io.github.zlika</groupId>
-                <artifactId>reproducible-build-maven-plugin</artifactId>
-                <version>0.17</version>
+                <groupId>io.github.git-commit-id</groupId>
+                <artifactId>git-commit-id-maven-plugin</artifactId>
+                <version>9.0.1</version>
                 <executions>
                     <execution>
-                        <id>strip-jar</id>
-                        <phase>package</phase>
+                        <id>get-the-git-infos</id>
                         <goals>
-                            <goal>strip-jar</goal>
+                            <goal>revision</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <verbose>true</verbose>
+                    <skipPoms>false</skipPoms>
+                    <includeOnlyProperties>
+                        <includeOnlyProperty>git.commit.time</includeOnlyProperty>
+                    </includeOnlyProperties>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-artifact-plugin</artifactId>
+                <version>3.5.1</version>
+                <executions>
+                    <execution>
+                        <id>verify-reproducible-build</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check-buildplan</goal>
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <failOnNonReproducible>true</failOnNonReproducible>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -8,7 +8,7 @@ This release upgrades dependencies and updates the automatic release process to 
 
 ## Bugfixes
 
-* [#74](https://github.com/itsallcode/junit5-system-extensions/issues/74): Upgrade dependencies
+* [#76](https://github.com/itsallcode/junit5-system-extensions/pull/76): Upgrade dependencies
 
 ## Compile Dependency Changes
 

@@ -12,7 +12,8 @@ import org.junit.jupiter.api.condition.JRE;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 @DisabledOnJre(value = {
-        JRE.JAVA_21 }, disabledReason = "The Security Manager is deprecated and will be removed in a future release")
+        JRE.JAVA_21,
+        JRE.JAVA_25 }, disabledReason = "The Security Manager is deprecated and will be removed in a future release")
 @ExtendWith(ExitGuard.class)
 class TestSystemExit
 {

@@ -30,9 +30,10 @@ jobs:
     - uses: actions/setup-java@v5
       with:
         distribution: 'temurin'
+        # SonarQube analysis requires Java 17 or higher
         java-version: |
           ${{ matrix.java }}
-          17 # For SonarQube analysis, which requires Java 17 or higher
+          17
         cache: maven
     - name: Cache SonarQube packages
       uses: actions/cache@v5

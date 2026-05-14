@@ -1,4 +1,4 @@
-# JUnit5 System Extensions 1.2.3, released 2026-05-??
+# JUnit5 System Extensions 1.2.3, released 2026-05-14
 
 Code name: Upgrade dependencies
 

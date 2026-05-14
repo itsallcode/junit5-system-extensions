@@ -34,8 +34,8 @@ jobs:
       with:
         languages: java
 
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v4
+    - name: Build
+      run: mvn --batch-mode --errors -Dmaven.gitcommitid.skip=true clean compile
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v4

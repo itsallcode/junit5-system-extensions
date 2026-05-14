@@ -30,10 +30,7 @@ jobs:
     - uses: actions/setup-java@v5
       with:
         distribution: 'temurin'
-        java-version: |
-          11
-          17
-          21
+        java-version: ${{ matrix.java }}
         cache: maven
     - name: Cache SonarQube packages
       uses: actions/cache@v5
